@@ -20,3 +20,23 @@ export interface DeleteMapsProgress {
     total: number;
     deleted: number;
 }
+
+export interface ScoredMap {
+    map: BsmLocalMap;
+    score: number;
+    recommended: boolean;
+}
+
+export interface SimilarMapGroup {
+    songName: string;
+    authorName: string;
+    maps: ScoredMap[];
+    totalSize: number;
+    similarity: 'exact' | 'high' | 'medium' | 'low';
+}
+
+export interface SimilarMapsResult {
+    groups: SimilarMapGroup[];
+    totalDuplicates: number;
+    potentialSpaceSaving: number;
+}

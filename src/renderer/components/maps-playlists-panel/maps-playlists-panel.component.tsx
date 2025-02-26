@@ -239,6 +239,7 @@ export function MapsPlaylistsPanel({ version, isActive }: Props) {
     const dropDownItems = ((): DropDownItem[] => {
         if (tabIndex === MAP_TAB) {
             return [
+                { icon: "search", text: "maps.duplicate-maps.title", onClick: () => mapsRef.current.findSimilarMaps?.() },
                 { icon: "export", text: "pages.version-viewer.maps.search-bar.dropdown.export-maps", onClick: () => mapsRef.current.exportMaps?.() },
                 { icon: "trash", text: "pages.version-viewer.maps.search-bar.dropdown.delete-maps", onClick: () => mapsRef.current.deleteMaps?.() },
                 { icon: "clean", text: "pages.version-viewer.maps.search-bar.dropdown.delete-duplicate-maps", onClick: () => mapsRef.current.removeDuplicates?.() },

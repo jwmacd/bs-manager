@@ -2,7 +2,7 @@ import { LinkContentModal } from "renderer/components/modal/modal-types/link-con
 import { UnlinkContentsModal } from "renderer/components/modal/modal-types/unlink-contents-modal.component";
 import { Subject, Observable, of, lastValueFrom, Subscription, throwError } from "rxjs";
 import { BSVersion } from "shared/bs-version.interface";
-import { BsmLocalMapsProgress, BsmLocalMap } from "shared/models/maps/bsm-local-map.interface";
+import { BsmLocalMapsProgress, BsmLocalMap, SimilarMapsResult } from "shared/models/maps/bsm-local-map.interface";
 import { IpcService } from "./ipc.service";
 import { ModalExitCode, ModalService } from "./modale.service";
 import { DeleteMapsModal } from "renderer/components/modal/modal-types/delete-maps-modal.component";
@@ -15,6 +15,7 @@ import { FolderLinkState, VersionFolderLinkerService } from "./version-folder-li
 import { SongDetails } from "shared/models/maps";
 import { Progression } from "main/helpers/fs.helpers";
 import { DeleteDuplicateMapsModal } from "renderer/components/modal/modal-types/delete-duplicate-maps-modal.component";
+import { MapAnalysisService } from "./map-analysis.service";
 import equal from "fast-deep-equal";
 
 export class MapsManagerService {
@@ -41,6 +42,8 @@ export class MapsManagerService {
     private readonly lastUnlinkedVersion$: Subject<BSVersion> = new Subject();
 
     private readonly lastImportedMap$: Subject<{ version: BSVersion, map: BsmLocalMap }> = new Subject();
+    
+    private readonly mapAnalysis: MapAnalysisService;
 
     private constructor() {
         this.ipcService = IpcService.getInstance();
@@ -49,6 +52,14 @@ export class MapsManagerService {
         this.notifications = NotificationService.getInstance();
         this.config = ConfigurationService.getInstance();
         this.linker = VersionFolderLinkerService.getInstance();
+        this.mapAnalysis = MapAnalysisService.getInstance();
+    }
+    
+    /**
+     * Find similar maps including exact duplicates and similar songs
+     */
+    public findSimilarMaps(maps: BsmLocalMap[]): Observable<SimilarMapsResult> {
+        return this.mapAnalysis.findSimilarMaps(maps);
     }
 
     public getMaps(version?: BSVersion): Observable<BsmLocalMapsProgress> {

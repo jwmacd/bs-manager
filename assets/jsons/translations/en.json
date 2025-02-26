@@ -1050,6 +1050,38 @@
             "downloading": "Downloading map",
             "cancel-download": "Cancel download",
             "hightlight-difficulty": "Highlight difficulty"
+        },
+        "similarity": {
+            "exact": "Exact match",
+            "high": "High similarity",
+            "medium": "Medium similarity",
+            "low": "Low similarity",
+            "unknown": "Unknown similarity"
+        },
+        "duplicate-maps": {
+            "title": "Similar Maps",
+            "back-to-list": "Back to Map List",
+            "analyzing": "Analyzing your map collection...",
+            "no-duplicates": "No similar maps found in your collection",
+            "analyze-again": "Analyze Again",
+            "select-all": "Select All",
+            "unselect-all": "Unselect All",
+            "expand-all": "Expand All",
+            "collapse-all": "Collapse All",
+            "delete-selected": "Delete Selected Duplicates",
+            "duplicate-count": "Potential duplicates",
+            "potential-saving": "Potential space saving",
+            "similar-groups": "Similar map groups",
+            "by": "by {{author}}",
+            "versions": "versions",
+            "mapper": "Mapper: {{mapper}}",
+            "recommended": "Recommended",
+            "bpm": "{{bpm}} BPM",
+            "duration": "{{duration}} min",
+            "difficulties": "{{count}} difficulties",
+            "curated": "Curated",
+            "likes": "likes",
+            "downloads": "downloads"
         }
     },
     "models": {

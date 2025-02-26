@@ -24,6 +24,7 @@ import { MapItem } from "./map-item.component";
 import { isLocalMapFitMapFilter } from "./filter-panel.component";
 import { MapItemComponentPropsMapper } from "shared/mappers/map/map-item-component-props.mapper";
 import { noop } from "shared/helpers/function.helpers";
+import { SimilarMapsPanel } from "./similar-maps-panel.component";
 
 type Props = {
     version: BSVersion;
@@ -39,6 +40,7 @@ export type LocalMapsListPanelRef = {
     deleteMaps: () => void;
     exportMaps: () => void;
     removeDuplicates: () => void;
+    findSimilarMaps: () => void;
 }
 
 export const LocalMapsListPanel = forwardRef<unknown, Props>(({
@@ -65,6 +67,8 @@ export const LocalMapsListPanel = forwardRef<unknown, Props>(({
 
     const loadPercent$ = useConstant(() => new BehaviorSubject(0));
 
+    const [showingSimilarMaps, setShowingSimilarMaps] = useState(false);
+    
     useImperativeHandle(forwardRef, () => ({
         deleteMaps() {
             const mapsToDelete = selectedMaps.length === 0 ? maps : selectedMaps;
@@ -84,6 +88,9 @@ export const LocalMapsListPanel = forwardRef<unknown, Props>(({
                 if(!res?.current){ return; }
                 loadMaps();
             }).catch(noop);
+        },
+        findSimilarMaps() {
+            setShowingSimilarMaps(true);
         }
     }),[selectedMaps, maps, version]);
 
@@ -97,7 +104,10 @@ export const LocalMapsListPanel = forwardRef<unknown, Props>(({
         return noop;
     }, [linkedState]);
 
-    useOnUpdate(() => setSelectedMaps([]), [version]); // Clear selected maps when version changes
+    useOnUpdate(() => {
+        setSelectedMaps([]);
+        setShowingSimilarMaps(false);
+    }, [version]); // Clear selected maps and reset view when version changes
 
     useEffect(() => {
         if (isActiveOnce) {
@@ -241,6 +251,31 @@ export const LocalMapsListPanel = forwardRef<unknown, Props>(({
                             e.preventDefault();
                             mapsDownloader.openDownloadMapModal(version);
                         }}
+                    />
+                </div>
+            </div>
+        );
+    }
+    
+    if (showingSimilarMaps) {
+        return (
+            <div className={`${className} flex flex-col`}>
+                <div className="flex justify-between items-center p-2 border-b flex-shrink-0">
+                    <h2 className="text-lg font-bold">{t("maps.duplicate-maps.title")}</h2>
+                    <BsmButton
+                        className="rounded-md p-1 text-sm"
+                        text="maps.duplicate-maps.back-to-list"
+                        typeColor="secondary"
+                        withBar={false}
+                        onClick={() => setShowingSimilarMaps(false)}
+                    />
+                </div>
+                <div className="flex-grow overflow-auto">
+                    <SimilarMapsPanel 
+                        maps={maps} 
+                        version={version}
+                        className="h-full w-full"
+                        onMapsDeleted={loadMaps}
                     />
                 </div>
             </div>
