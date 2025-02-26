@@ -104,6 +104,8 @@
                             "bpm": "BPM",
                             "duration": "Duration",
                             "likes": "Likes",
+                            "total-votes": "Total Votes",
+                            "downloads": "Downloads",
                             "date-uploaded": "Date Uploaded"
                         }
                     },
