@@ -263,9 +263,9 @@ export const LocalMapsListPanel = forwardRef<unknown, Props>(({
                 <div className="flex justify-between items-center p-2 border-b flex-shrink-0">
                     <h2 className="text-lg font-bold">{t("maps.duplicate-maps.title")}</h2>
                     <BsmButton
-                        className="rounded-md p-1 text-sm"
+                        className="rounded-md px-3 py-1 text-sm !bg-blue-600 hover:!bg-blue-500 text-white"
                         text="maps.duplicate-maps.back-to-list"
-                        typeColor="secondary"
+                        typeColor="none"
                         withBar={false}
                         onClick={() => setShowingSimilarMaps(false)}
                     />

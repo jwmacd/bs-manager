@@ -14,9 +14,17 @@ export class MapAnalysisService {
         }
         return MapAnalysisService.instance;
     }
+    
+    // Add any static constants at the class level (if needed)
+    // public static readonly SOME_CONSTANT = "value";
 
     /**
      * Find similar maps within a collection, including true duplicates and fuzzy matches
+     * Groups maps based on exact hash matches and fuzzy name/artist matching
+     * Ranks maps within each group and marks highest quality version as recommended
+     * 
+     * @param maps Collection of maps to analyze for similarities
+     * @returns Observable that emits analysis results containing similar map groups
      */
     public findSimilarMaps(maps: BsmLocalMap[]): Observable<SimilarMapsResult> {
         return of(maps).pipe(
@@ -265,8 +273,8 @@ export class MapAnalysisService {
                     
                     // Quality indicators
                     if (map.songDetails.ranked || map.songDetails.blRanked) score += 500;
-                    if (map.songDetails.curated) score += 300;
-                    if (map.songDetails.uploader?.verified) score += 200;
+                    if (map.songDetails.curated) score += 100;
+                    if (map.songDetails.uploader?.verified) score += 50;
                     
                     // Penalize auto-mapped content
                     if (map.songDetails.automapper) score -= 300;

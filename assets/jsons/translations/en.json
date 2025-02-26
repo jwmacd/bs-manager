@@ -104,7 +104,8 @@
                             "bpm": "BPM",
                             "duration": "Duration",
                             "likes": "Likes",
-                            "date-uploaded": "Date Uploaded"
+                            "date-uploaded": "Date Uploaded",
+                            "file-size": "File Size"
                         }
                     },
                     "playlists": {
@@ -1050,11 +1051,11 @@
             "hightlight-difficulty": "Highlight difficulty"
         },
         "similarity": {
-            "exact": "Exact match",
-            "high": "High similarity",
-            "medium": "Medium similarity",
-            "low": "Low similarity",
-            "unknown": "Unknown similarity"
+            "exact": "Exact Match",
+            "high": "High Similarity",
+            "medium": "Medium Similarity", 
+            "low": "Low Similarity",
+            "unknown": "Unknown Similarity"
         },
         "duplicate-maps": {
             "title": "Similar Maps",
@@ -1066,20 +1067,20 @@
             "unselect-all": "Unselect All",
             "expand-all": "Expand All",
             "collapse-all": "Collapse All",
-            "delete-selected": "Delete Selected Duplicates",
-            "duplicate-count": "Potential duplicates",
-            "potential-saving": "Potential space saving",
-            "similar-groups": "Similar map groups",
+            "delete-selected": "Delete Selected",
+            "duplicate-count": "Potential Duplicates",
+            "potential-saving": "Potential Space Saving",
+            "similar-groups": "Similar Map Groups",
             "by": "by {{author}}",
-            "versions": "versions",
+            "versions": "Versions",
             "mapper": "Mapper: {{mapper}}",
             "recommended": "Recommended",
             "bpm": "{{bpm}} BPM",
             "duration": "{{duration}} min",
-            "difficulties": "{{count}} difficulties",
+            "difficulties": "{{count}} Difficulties",
             "curated": "Curated",
-            "likes": "likes",
-            "downloads": "downloads"
+            "likes": "Likes",
+            "downloads": "Downloads"
         }
     },
     "models": {
