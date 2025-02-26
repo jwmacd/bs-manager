@@ -28,27 +28,6 @@ export const mapSorter = new Sorter<BsmLocalMap>({
 
             return !map2.songDetails ? Comparison.GREATER : map1.songDetails.upVotes - map2.songDetails.upVotes;
         },
-        "total-votes": (map1, map2) => {
-            if (!map1.songDetails) {
-                return map2.songDetails ? Comparison.LESSER : Comparison.EQUAL;
-            }
-
-            if (!map2.songDetails) {
-                return Comparison.GREATER;
-            }
-
-            const map1TotalVotes = map1.songDetails.upVotes + map1.songDetails.downVotes;
-            const map2TotalVotes = map2.songDetails.upVotes + map2.songDetails.downVotes;
-            
-            return map1TotalVotes - map2TotalVotes;
-        },
-        downloads: (map1, map2) => {
-            if (!map1.songDetails) {
-                return map2.songDetails ? Comparison.LESSER : Comparison.EQUAL;
-            }
-
-            return !map2.songDetails ? Comparison.GREATER : map1.songDetails.downloads - map2.songDetails.downloads;
-        },
         "date-uploaded": (map1, map2) => {
             if (!map1.songDetails) {
                 return map2.songDetails ? Comparison.LESSER : Comparison.EQUAL;
